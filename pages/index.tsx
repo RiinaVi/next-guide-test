@@ -2,12 +2,18 @@ import React from "react";
 import Layout from "../components/MyLayout";
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
+import {Show} from "../interfaces";
+import {NextPage} from "next";
 
-const Index = props => (
+type Props = {
+    shows: Show[]
+}
+
+const Index : NextPage<Props> = ({shows}) => (
     <Layout>
         <h1>Batman TV Shows</h1>
         <ul>
-            {props.shows.map(show => (
+            {shows.map(show => (
                 <li key={show.id}>
                     <Link href={"/p/[id]"} as={`/p/${show.id}`}>
                         <a>{show.name}</a>
