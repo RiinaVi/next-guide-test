@@ -8,3 +8,11 @@ export type Show = {
 type Image = {
     medium: string
 }
+
+ export type InputFile = {
+    current: any
+}
+
+type Current = {
+    value : any
+}

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 import {Show} from "../interfaces";
 import {NextPage} from "next";
+import DownloadInput from "../components/DownloadInput";
 
 type Props = {
     shows: Show[]
@@ -21,6 +22,7 @@ const Index : NextPage<Props> = ({shows}) => (
                 </li>
             ))}
         </ul>
+        <DownloadInput/>
     </Layout>
 );
 
