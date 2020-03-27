@@ -44,7 +44,7 @@ server.prepare().then(() => {
         }
         console.log(file);
 
-        res.send(file.originalname+' '+file.size+' symbols')
+        res.status(200).json({'res': file.originalname+' '+file.size+' symbols'})
 
     })
 
@@ -53,7 +53,7 @@ server.prepare().then(() => {
     })
 
 
-    app.listen(3000, () => console.log('Server started on port 3000'));
+    app.listen(8080, () => console.log('Server started on port 8080'));
 
 })
 

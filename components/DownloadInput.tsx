@@ -1,17 +1,37 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import {NextPage} from "next";
+import {request} from "http";
+import fetch from 'isomorphic-unfetch';
 
 const DownloadInput: NextPage = () => {
-        function autoSubmit(e) {
-            e.target.parentElement.submit()
-        }
 
+        const form = useRef(null);
+        const file = useRef(null);
+        const [res, setRes] = useState(null);
+
+        const submitHandler = async (e) => {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append('myFile', file.current.files[0]);
+            const response = await fetch('/uploadfile', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json, application/xml, text/play, text/html, *.*',
+                },
+                body: formData
+            });
+            setRes((await response.json()).res);
+        };
 
         return (
             <form
+                ref={form}
                 action="/uploadfile"
+                onSubmit={submitHandler}
                 encType="multipart/form-data" method="POST">
-                <input onChange={event => autoSubmit(event)} type="file" name="myFile" />
+                <input ref={file} onChange={submitHandler} type="file" name="myFile" />
+                <button>go</button>
+                <div>{res}</div>
             </form>
         )
 
