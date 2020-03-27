@@ -12,7 +12,7 @@ const DownloadInput: NextPage = () => {
             e.preventDefault();
             const formData = new FormData();
             formData.append('myFile', file.current.files[0]);
-            const response = await fetch('/uploadfile', {
+            const response = await fetch('/upload', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json, application/xml, text/play, text/html, *.*',

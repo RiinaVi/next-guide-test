@@ -33,7 +33,9 @@ server.prepare().then(() => {
         return server.render(req, res, '/', req.query)
     });
 
-    app.post('/upload', upload.single('myFile'), (req, res, next) => {
+    app.post('/upload',
+        upload.single('myFile'),
+        (req, res, next) => {
         const file = req.file;
         if (!file) {
             const error = new Error('Please upload a file');
